@@ -1,187 +1,650 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kondeboni Mahesh - Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mahesh Kondeboni - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #0f0f0f;
+      --text: #e0e0e0;
+      --accent-green: #4ade80;
+      --accent-red: #f87171;
+      --accent-yellow: #fbbf24;
+      --card-bg: #1a1a1a;
+      --border: #333;
+      --shadow: rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: #0a0f0a;
-      color: #d4fcd4;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
       line-height: 1.6;
+      overflow-x: hidden;
     }
-    header {
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid #4fff4f;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      color: #4fff4f;
-      text-shadow: 0 0 8px #4fff4f;
-    }
-    header p {
-      font-size: 0.9rem;
-      margin: 5px 0;
-      word-wrap: break-word;
-    }
-    header a {
-      color: #4fff4f;
+
+    a {
       text-decoration: none;
-      margin: 0 8px;
+      color: inherit;
     }
-    .container {
-      max-width: 950px;
-      margin: auto;
-      padding: 15px;
-    }
-    section {
-      margin-bottom: 30px;
-      padding: 15px;
-      background: rgba(79, 255, 79, 0.05);
-      border: 1px solid #4fff4f;
-      border-radius: 8px;
-      box-shadow: 0 0 12px rgba(79,255,79,0.2);
-    }
-    h2 {
-      font-size: 1.3rem;
-      border-left: 3px solid #4fff4f;
-      padding-left: 8px;
-      margin-bottom: 12px;
-      color: #4fff4f;
-      text-shadow: 0 0 6px #4fff4f;
-    }
-    .skills span {
-      display: inline-block;
-      margin: 5px;
-      padding: 6px 12px;
-      font-size: 0.85rem;
-      background: rgba(79, 255, 79, 0.1);
-      border: 1px solid #4fff4f;
-      border-radius: 4px;
-      transition: 0.3s;
-    }
-    .skills span:hover {
-      background: #4fff4f;
-      color: #0a0f0a;
-      cursor: pointer;
-      box-shadow: 0 0 8px #4fff4f;
-    }
+
     ul {
       list-style: none;
-      padding: 0;
     }
-    ul li {
-      margin-bottom: 10px;
-      padding-left: 15px;
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-yellow);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--text);
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 0 4rem;
+      scroll-margin-top: 80px;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
       position: relative;
     }
-    ul li::before {
-      content: "▹";
-      color: #4fff4f;
+
+    .section-title::after {
+      content: '';
       position: absolute;
-      left: 0;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--accent-green);
+      border-radius: 2px;
     }
-    /* 📱 Mobile responsiveness */
+
+    /* About */
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.2rem;
+      margin: 0 auto;
+      max-width: 1000px;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid var(--border);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px var(--shadow);
+    }
+
+    .skill-name {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-level {
+      font-size: 0.85rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .level-advanced { color: var(--accent-green); background: rgba(74, 222, 128, 0.15); }
+    .level-intermediate { color: var(--accent-yellow); background: rgba(251, 191, 36, 0.15); }
+    .level-basic { color: var(--accent-red); background: rgba(248, 113, 113, 0.15); }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid var(--border);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px var(--shadow);
+    }
+
+    .project-img {
+      width: 100%;
+      height: 180px;
+        overflow: hidden; /* hides overflow image */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+      /* background: #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-green);
+      font-size: 1.5rem; */
+    }
+
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* keeps image proportional */
+  display: block;
+}
+.project-img img:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+    .project-info {
+      padding: 1.25rem;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--accent-yellow);
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      color: #ccc;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-links a {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .github-link {
+      background: var(--card-bg);
+      border: 1px solid var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    .demo-link {
+      background: var(--card-bg);
+      border: 1px solid var(--accent-yellow);
+      color: var(--accent-yellow);
+    }
+
+    .github-link:hover {
+      background: var(--accent-green);
+      color: var(--bg);
+    }
+
+    .demo-link:hover {
+      background: var(--accent-yellow);
+      color: var(--bg);
+    }
+
+    /* Education */
+    .education-item {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--accent-green);
+    }
+
+    .edu-degree {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent-yellow);
+    }
+
+    .edu-details {
+      color: #aaa;
+      margin-bottom: 1rem;
+    }
+
+    .edu-courses {
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    /* Contact */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .contact-form textarea {
+      height: 150px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      padding: 0.8rem 2rem;
+      background: var(--accent-green);
+      color: var(--bg);
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background: #22c55e;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--card-bg);
+      color: var(--accent-green);
+      font-weight: bold;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.6rem;
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 2rem;
+        transition: left 0.3s ease;
       }
-      header p {
-        font-size: 0.8rem;
+
+      .nav-links.active {
+        left: 0;
       }
-      .skills span {
-        display: block;
-        margin: 6px 0;
-        text-align: center;
+
+      .hamburger {
+        display: flex;
       }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
       section {
-        padding: 12px;
+        padding: 5rem 0 3rem;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>KONDEBONI MAHESH</h1>
-    <p>B.Tech. - Computer Science and Data Science (2022 - 2026)</p>
-    <p>📞 +91-6302496349 | 📧 228r1a6726@gmail.com</p>
-    <p>
-      <a href="https://in.linkedin.com/in/mahesh-kondeboni" target="_blank">LinkedIn</a> |
-      <a href="https://github.com/kondebonimahesh" target="_blank">GitHub</a> |
-      <a href="https://leetcode.com/u/Mahes_h/" target="_blank">LeetCode</a>
-    </p>
-  </header>
 
-  <div class="container">
-    <section>
-      <h2>Brief Summary</h2>
-      <p>I enjoy solving complex problems by analyzing challenges, identifying effective solutions, and implementing strategies that improve outcomes for both myself and the organization. I am always eager to learn and adapt to new technologies.</p>
-    </section>
-
-    <section>
-      <h2>Key Expertise</h2>
-      <div class="skills">
-        <span>HTML</span> <span>CSS</span> <span>C++</span> <span>React</span>
-        <span>Node.js</span> <span>MongoDB</span> <span>Express.js</span>
-        <span>RESTful APIs</span> <span>JavaScript</span>
-        <span>Git/GitHub</span> <span>Docker</span> <span>Linux</span>
+  <!-- Navbar -->
+  <nav>
+    <div class="container nav-container">
+      <div class="logo">Mahesh K.</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-    </section>
+    </div>
+  </nav>
 
-    <section>
-      <h2>Education</h2>
-      <ul>
-        <li><b>CMR Engineering College</b> (2022 - 2026) – B.Tech. in Computer Science & Data Science | CGPA: 8.37 / 10</li>
-        <li><b>Intermediate (12th)</b> – Percentage: 96%</li>
-        <li><b>SSC (10th)</b> – Percentage: 90.25%</li>
-      </ul>
-    </section>
+  <!-- About Section -->
+  <section id="about" class="fade-in">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-text">
+        Results-driven tech student and Full-stack developer with expertise in MERN stack, and scalable web solutions. Strong foundation in Data Structures and Algorithms and the ability to build impactful solutions. Passionate and curious about applying data and technology to drive real-world innovation and contribute to global business and technology solutions. Highly adaptable and eager to learn emerging technologies.
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-name">C</div>
+          <div class="skill-level level-advanced">Advanced</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">C++</div>
+          <div class="skill-level level-advanced">Advanced</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">Python</div>
+          <div class="skill-level level-basic">Basic</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">JavaScript</div>
+          <div class="skill-level level-intermediate">Intermediate</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">HTML</div>
+          <div class="skill-level level-intermediate">Intermediate</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">CSS</div>
+          <div class="skill-level level-intermediate">Intermediate</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">Node.js</div>
+          <div class="skill-level level-intermediate">Intermediate</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">Express.js</div>
+          <div class="skill-level level-intermediate">Intermediate</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">PostgreSQL</div>
+          <div class="skill-level level-intermediate">Intermediate</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">Git</div>
+          <div class="skill-level level-intermediate">Intermediate</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">SQL</div>
+          <div class="skill-level level-intermediate">Intermediate</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">OOP’s</div>
+          <div class="skill-level level-advanced">Advanced</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">DSA</div>
+          <div class="skill-level level-intermediate">Intermediate</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">DBMS</div>
+          <div class="skill-level level-intermediate">Intermediate</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2>Projects</h2>
-      <ul>
-        <li>
-          <b>AI-Powered Job Posting Normalizer</b>  
-          <i>Python, FastAPI, MongoDB, React.js, RESTful API, OpenAI API</i><br/>
-          – Built a full-stack app to clean and structure job postings using FastAPI & MongoDB.<br/>
-          – React frontend with filters/search, backend API to process raw job data → structured JSON.
-        </li>
-        <li>
-          <b>Full Stack Social Media Web App</b>  
-          <i>MongoDB, Express.js, React.js, Clerk, Inngest, ImageKit</i><br/>
-          – Developed a scalable social media platform with authentication, chat, posts, stories, and friend requests.<br/>
-          – Integrated ImageKit for media delivery and Inngest for background jobs.<br/>
-          – Delivered a secure, responsive, and high-performance app.
-        </li>
-      </ul>
-    </section>
+  <!-- Projects Section -->
+  <section id="projects" class="fade-in">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-img"><img src="blog_api.png" alt="Project Screenshot"></div>
+          <div class="project-info">
+            <h3 class="project-title">Blog Post Management API</h3>
+            <p class="project-desc">RESTful API for blog post CRUD operations using Express.js and MongoDB with Mongoose schemas.</p>
+            <div class="project-links">
+              <a href="https://github.com/kondebonimahesh/Blog-api" target="_blank" class="github-link">GitHub</a>
+              <a href="#" class="demo-link">Demo</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-img"><img src="job_hunter.png" alt="Project Screenshot"></div>
+          <div class="project-info">
+            <h3 class="project-title">Job Hunter - AI powered Job Search</h3>
+            <p class="project-desc">Dynamic job search web app using React.js with Google’s Gemini AI API integration.</p>
+            <div class="project-links">
+              <a href="https://github.com/kondebonimahesh/job-search" target="_blank" class="github-link">GitHub</a>
+              <a href="https://job-search-2jlskb536-mahweshs-projects.vercel.app/" target="_blank" class="demo-link">Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2>Achievements</h2>
-      <ul>
-        <li>Organized <b>“DIGITHON”</b> tech event, coordinating 6 sub-events with 20 volunteers.</li>
-        <li>Certified in Data Structures and Algorithms, showcasing strong problem-solving expertise.</li>
-      </ul>
-    </section>
+  <!-- Education Section -->
+  <section id="education" class="fade-in">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <div class="education-list">
+        <div class="education-item">
+          <h3 class="edu-degree">Bachelor of Technology (B.Tech)</h3>
+          <div class="edu-details">Computer Science and Engineering • 2022 - 2026 • GPA: 8.37</div>
+          <div class="edu-courses">Relevant Coursework: Data Structures, Algorithms, DBMS, OOP</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2>Assessments / Certifications</h2>
-      <ul>
-        <li>SmartCoder - DSA Training</li>
-      </ul>
-    </section>
+  <!-- Contact Section -->
+  <section id="contact" class="fade-in">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-container">
+        <form class="contact-form" id="contactForm">
+          <input type="text" id="name" placeholder="Your Name" required />
+          <input type="email" id="email" placeholder="Your Email" required />
+          <textarea id="message" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <div class="social-links">
+          <a href="https://linkedin.com/in/mahesh-kondeboni" target="_blank" class="social-item">
+            <div class="social-icon">in</div>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/kondebonimahesh" target="_blank" class="social-item">
+            <div class="social-icon">@</div>
+            <span>GitHub</span>
+          </a>
+          <a href="mailto:kondebonimahesh@gmail.com" class="social-item">
+            <div class="social-icon">✉</div>
+            <span>Email</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2>Personal Interests</h2>
-      <ul>
-        <li>Coding & Problem Solving</li>
-        <li>Playing Sports</li>
-      </ul>
-    </section>
-  </div>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      &copy; 2025 Mahesh Kondeboni. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // DOM Elements
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navLinks');
+    const sections = document.querySelectorAll('section');
+
+    // Mobile Menu Toggle
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking a link
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Smooth scrolling
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        window.scrollTo({
+          top: targetSection.offsetTop - 70,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Intersection Observer for fade-in
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('appear');
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+
+    // Form Submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! (Form submission simulated)');
+      this.reset();
+    });
+  </script>
 </body>
 </html>
